@@ -1,0 +1,153 @@
+@mixin typography($fontSize, $lineHeight, $fontWeight) {
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  line-height: $lineHeight;
+}
+
+.Large {
+  @include typography(
+    var(--font-size-xxl),
+    var(--line-height-xl),
+    var(--font-weight-semi-bold)
+  );
+}
+
+.h1 {
+  @include typography(
+    var(--font-size-xl),
+    var(--line-height-xl),
+    var(--font-weight-bold)
+  );
+}
+
+.h2 {
+  @include typography(
+    var(--font-size-x),
+    var(--line-height-l),
+    var(--font-weight-bold)
+  );
+}
+
+.h3 {
+  @include typography(
+    var(--font-size-l),
+    var(--line-height-l),
+    var(--font-weight-semi-bold)
+  );
+}
+
+.regular_text-16 {
+  @include typography(
+    var(--font-size-l),
+    var(--line-height-l),
+    var(--font-weight-regular)
+  );
+}
+
+.Bold_text-16 {
+  @include typography(
+    var(--font-size-l),
+    var(--line-height-l),
+    var(--font-weight-bold)
+  );
+}
+
+.regular_text-14 {
+  @include typography(
+    var(--font-size-m),
+    var(--line-height-l),
+    var(--font-weight-regular)
+  );
+}
+
+.Medium_text-14 {
+  @include typography(
+    var(--font-size-m),
+    var(--line-height-l),
+    var(-font-weight-medium)
+  );
+}
+
+.bold_text-14 {
+  @include typography(
+    var(--font-size-m),
+    var(--line-height-l),
+    var(--font-weight-bold)
+  );
+}
+
+.small-text {
+  @include typography(
+    var(--font-size-s),
+    var(--line-height-m),
+    var(--font-weight-regular)
+  );
+}
+
+.Semi-bold_small-text {
+  @include typography(
+    var(--font-size-s),
+    var(--line-height-m),
+    var(--font-weight-semi-bold)
+  );
+}
+.Semi-bold_middle-text {
+  @include typography(
+   var(--font-size-m),
+   var(--line-height-l),
+   var(--font-weight-semi-bold)
+
+  );
+}
+
+.regular_link {
+  @include typography(
+    var(--font-size-m),
+    var(--line-height-l),
+    var(--font-weight-regular)
+  );
+
+  cursor: pointer;
+  color: var(--color-accent-500) !important;
+  text-decoration: underline !important;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+.small_link {
+  @include typography(
+    var(--font-size-s),
+    var(--line-height-m),
+    var(--font-weight-regular)
+  );
+
+  cursor: pointer;
+  color: var(--color-accent-500);
+  text-decoration: underline;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+.error_regular {
+  @include typography(
+    var(--font-size-s),
+    var(--line-height-s),
+    var(--font-weight-regular)
+  );
+  color: var(--color-danger-500);
+}
+
+.error {
+  @include typography(
+    var(--font-size-m),
+    var(--line-height-l),
+    var(--font-weight-regular)
+  );
+  color: var(--color-danger-500);
+}
