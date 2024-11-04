@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useEffect } from 'react'
+import { FC, PropsWithChildren, useEffect, useState } from 'react'
 
 import { Paths, authRoutes, commonRoutes } from '@/shared/assets/constants/paths'
 import { authSetting } from '@/shared/assets/enum/authEnum'
@@ -8,16 +8,25 @@ import { useRouter } from 'next/router'
 
 export const WithNavigate: FC<PropsWithChildren<{}>> = ({ children }) => {
   const { pathname, push, query } = useRouter()
-  const isAuth = loadFromSessionStorage(authSetting.isLoggedIn)
+  const [isAuth, setIsAuth] = useState<boolean | null>(null)
 
   useEffect(() => {
-    if (!isAuth) {
-      void push(Paths.LOGIN)
+    // Проверяем наличие `window`, чтобы убедиться, что код выполняется на клиенте
+    if (typeof window !== 'undefined') {
+      setIsAuth(loadFromSessionStorage(authSetting.isLoggedIn))
     }
-    if (isAuth) {
+  }, [])
+
+  useEffect(() => {
+    if (isAuth === false) {
+      void push(Paths.LOGIN)
+    } else if (isAuth && pathname !== Paths.Users) {
       void push(Paths.Users)
     }
-  }, [isAuth])
+  }, [isAuth, pathname, push])
+  if (isAuth === false) {
+    return null // Можно отобразить спиннер или лоадер
+  }
 
   return <>{children}</>
 }

@@ -7,11 +7,7 @@ import { Layout } from '../Layout'
 const BaseLayout: NextPage<PropsWithChildren> = props => {
   const { children } = props
 
-  return (
-    <div>
-      <Layout>{children}</Layout>
-    </div>
-  )
+  return <Layout>{children}</Layout>
 }
 
 export const getLayout = (page: ReactElement) => {

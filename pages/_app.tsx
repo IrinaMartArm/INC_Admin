@@ -1,12 +1,12 @@
 import type { AppProps } from 'next/app'
 
 import { ReactElement, ReactNode } from 'react'
-import { Provider } from 'react-redux'
 
-import { store } from '@/bll/store'
+import RootStore from '@/bll/stores/rootStore'
 import { WithNavigate } from '@/shared/assets/hok/WithNavigate'
+import { RootStoreContext } from '@/shared/assets/hooks/rootStoreContext'
 import { client } from '@/shared/lib/apolloClient/ApolloClient'
-import { ApolloProvider, gql } from '@apollo/client'
+import { ApolloProvider } from '@apollo/client'
 import { Roboto } from '@next/font/google'
 import { NextPage } from 'next'
 
@@ -30,12 +30,12 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? (page => page)
 
   return (
-    <Provider store={store}>
+    <RootStoreContext.Provider value={new RootStore()}>
       <ApolloProvider client={client}>
         <WithNavigate>
           <div className={roboto.className}>{getLayout(<Component {...pageProps} />)}</div>
         </WithNavigate>
       </ApolloProvider>
-    </Provider>
+    </RootStoreContext.Provider>
   )
 }

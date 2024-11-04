@@ -1,23 +1,24 @@
 import React from 'react'
 
-import { useAppDispatch } from '@/bll/store'
-import { authActions } from '@/entities/auth/model/auth-slice'
 import { useAuthorizeSuperAdminMutation } from '@/entities/queries/login.types'
 import { useTranslationPages } from '@/shared/assets'
 import { Paths } from '@/shared/assets/constants/paths'
 import { authSetting } from '@/shared/assets/enum/authEnum'
+import { useStores } from '@/shared/assets/hooks/rootStoreContext'
 import { LoginArgs } from '@/shared/assets/types/auth'
 import { getLayout } from '@/shared/components/layout/baseLayout/BaseLayout'
 import { SignInCard } from '@/widgets/auth/signIn/SignInCard'
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 
 const SignIn = () => {
+  const {
+    authStore: { setError },
+  } = useStores()
   const { t } = useTranslationPages()
   const router = useRouter()
+  const [authorizeSuperAdminMutation, { error }] = useAuthorizeSuperAdminMutation()
 
-  const [authorizeSuperAdminMutation, { loading }] = useAuthorizeSuperAdminMutation()
-  const dispatch = useAppDispatch()
   const loginHandler = async (args: LoginArgs) => {
     try {
       const res = await authorizeSuperAdminMutation({ variables: { authLoginInput: args } })
@@ -27,18 +28,22 @@ const SignIn = () => {
         sessionStorage.setItem(authSetting.authToken, res.data?.authorizeSuperAdmin)
         await router.push(Paths.MAIN)
       }
-    } catch (err) {
-      const { status } = err as FetchBaseQueryError
-      const errorMessage = status === 401 ? t.loginError : t.unknownError
+    } catch (err: any) {
+      const errorMessage =
+        err.graphQLErrors[0]?.message !== 'Invalid email or password'
+          ? t.unknownError
+          : t.loginError
 
-      dispatch(authActions.setError(errorMessage))
-
-      console.log(err)
+      setError(errorMessage)
     }
   }
 
-  return <SignInCard onSubmit={loginHandler} />
+  return (
+    <>
+      <SignInCard onSubmit={loginHandler} />
+    </>
+  )
 }
 
 SignIn.getLayout = getLayout
-export default SignIn
+export default observer(SignIn)

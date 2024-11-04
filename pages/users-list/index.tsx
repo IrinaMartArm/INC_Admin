@@ -1,17 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { authSetting } from '@/shared/assets/enum/authEnum'
 import { loadFromSessionStorage } from '@/shared/assets/hooks/loadFromSessionStorage'
 import { getLayout } from '@/shared/components/layout/baseLayout/BaseLayout'
 
 const UserList = () => {
-  const isAuth = loadFromSessionStorage(authSetting.isLoggedIn)
+  const [isAuth, setIsAuth] = useState<boolean | null>(null)
 
-  if (!isAuth) {
-    return
+  useEffect(() => {
+    setIsAuth(loadFromSessionStorage(authSetting.isLoggedIn))
+  }, [])
+
+  if (isAuth === null) {
+    return null
   }
 
-  return <div>Попал</div>
+  if (!isAuth) {
+    return null
+  }
+
+  return <>Попал</>
 }
 
 UserList.getLayout = getLayout
