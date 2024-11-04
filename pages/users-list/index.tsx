@@ -5,21 +5,20 @@ import { loadFromSessionStorage } from '@/shared/assets/hooks/loadFromSessionSto
 import { getLayout } from '@/shared/components/layout/baseLayout/BaseLayout'
 
 const UserList = () => {
-  const [isAuth, setIsAuth] = useState<boolean | null>(null)
-
-  useEffect(() => {
-    setIsAuth(loadFromSessionStorage(authSetting.isLoggedIn))
-  }, [])
-
-  if (isAuth === null) {
-    return null
-  }
-
-  if (!isAuth) {
-    return null
-  }
-
-  return <>Попал</>
+  // const [isAuth, setIsAuth] = useState<boolean | null>(null)
+  //
+  // useEffect(() => {
+  //   setIsAuth(loadFromSessionStorage(authSetting.isLoggedIn))
+  // }, [])
+  //
+  // if (isAuth === null) {
+  //   return null
+  // }
+  //
+  // if (!isAuth) {
+  //   return null
+  // }
+  return <>UserList</>
 }
 
 UserList.getLayout = getLayout
