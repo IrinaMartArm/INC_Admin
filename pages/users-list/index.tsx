@@ -1,17 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
+import { Button } from '@/shared'
+import { Paths } from '@/shared/assets/constants/paths'
 import { authSetting } from '@/shared/assets/enum/authEnum'
 import { loadFromSessionStorage } from '@/shared/assets/hooks/loadFromSessionStorage'
 import { getLayout } from '@/shared/components/layout/baseLayout/BaseLayout'
+import { useRouter } from 'next/router'
 
 const UserList = () => {
-  const isAuth = loadFromSessionStorage(authSetting.isLoggedIn)
+  const router = useRouter()
 
-  if (!isAuth) {
-    return
-  }
-
-  return <div>Попал</div>
+  return <>UserList</>
 }
 
 UserList.getLayout = getLayout

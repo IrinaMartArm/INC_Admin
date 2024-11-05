@@ -13,7 +13,7 @@ export const Layout: NextPage<PropsWithChildren> = props => {
   return (
     <div className={s.root}>
       <Header isAuth={false} />
-      <div className={s.main}>{children}</div>
+      <div className={s.main}>{children ? children : null}</div>
     </div>
   )
 }
