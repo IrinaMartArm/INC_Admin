@@ -26,8 +26,8 @@ const SignIn = () => {
       if (res.data?.authorizeSuperAdmin) {
         sessionStorage.setItem(authSetting.isLoggedIn, 'true')
         sessionStorage.setItem(authSetting.authToken, res.data?.authorizeSuperAdmin)
-        await router.push(Paths.Users)
         window.dispatchEvent(new Event('storage'))
+        await router.push(Paths.USERS)
       }
     } catch (err: any) {
       const errorMessage =

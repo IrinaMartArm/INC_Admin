@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from 'react'
 
+import { Button } from '@/shared'
+import { Paths } from '@/shared/assets/constants/paths'
 import { authSetting } from '@/shared/assets/enum/authEnum'
 import { loadFromSessionStorage } from '@/shared/assets/hooks/loadFromSessionStorage'
 import { getLayout } from '@/shared/components/layout/baseLayout/BaseLayout'
+import { useRouter } from 'next/router'
 
 const UserList = () => {
-  // const [isAuth, setIsAuth] = useState<boolean | null>(null)
-  //
-  // useEffect(() => {
-  //   setIsAuth(loadFromSessionStorage(authSetting.isLoggedIn))
-  // }, [])
-  //
-  // if (isAuth === null) {
-  //   return null
-  // }
-  //
-  // if (!isAuth) {
-  //   return null
-  // }
+  const router = useRouter()
+
   return <>UserList</>
 }
 
