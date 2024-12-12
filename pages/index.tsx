@@ -7,11 +7,14 @@ import Head from 'next/head'
 const inter = Inter({ subsets: ['latin'] })
 
 const Home: NextPageWithLayout = () => {
+  console.log('sadsadsad')
+
   return (
     <>
       <Head>
-        <title>Next App</title>
+        <title>Nexty App</title>
         <meta content={'width=device-width, initial-scale=1'} name={'viewport'} />
+        <meta content={'author'} name={'GGGG'} />
         <link href={'/favicon.ico'} rel={'icon'} />
       </Head>
       <main>

@@ -1,9 +1,14 @@
 import { Head, Html, Main, NextScript } from 'next/document'
 
 export default function Document() {
+  console.log('Попал')
+
   return (
     <Html lang={'en'}>
-      <Head />
+      <Head>
+        <title>Next App</title>
+        <link href={'https://rsms.me/inter/inter.css'} rel={'stylesheet'} />
+      </Head>
       <body>
         <Main />
         <NextScript />

@@ -1,8 +1,8 @@
-import { getLayout } from '@/shared/components/layout/baseLayout/BaseLayout'
+import { getAdminLayout } from '@/shared/components/layout/superAdminLayout/AdminLayout'
 
 const PaymentListPage = () => {
   return <div>PaymentListPage</div>
 }
 
-PaymentListPage.getLayout = getLayout
+PaymentListPage.getLayout = getAdminLayout
 export default PaymentListPage
