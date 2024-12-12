@@ -7,8 +7,6 @@ import s from './layout.module.scss'
 
 export const Layout: NextPage<PropsWithChildren> = props => {
   const { children } = props
-  // const { data: me } = useMeQuery()
-  // const isAuth = me?.userId !== undefined
 
   return (
     <div className={s.root}>

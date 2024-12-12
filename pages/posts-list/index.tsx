@@ -1,11 +1,11 @@
 import { getAdminLayout } from '@/shared/components/layout/superAdminLayout/AdminLayout'
 import { useRouter } from 'next/router'
 
-const UserList = () => {
+const PostsList = () => {
   const router = useRouter()
 
-  return <>UserList</>
+  return <>Statistics</>
 }
 
-UserList.getLayout = getAdminLayout
-export default UserList
+PostsList.getLayout = getAdminLayout
+export default PostsList
